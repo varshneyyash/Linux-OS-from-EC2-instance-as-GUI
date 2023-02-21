@@ -1,0 +1,48 @@
+How to launch Linux OS from EC2-instance as GUI?
+You might require a graphical user interface (GUI) to interact with your system if you are dealing with Amazon EC2 instances. You can still install a GUI to make it simpler to manage and access your resources even if Amazon Linux 2 is a command-line-based operating system.
+
+In this blog, we will go through the steps required to install a GUI on an Amazon EC2 instance running on Amazon Linux 2.
+
+Let’s Start
+
+Launching a Linux operating system from an EC2 instance as a GUI involves a few steps, which are outlined in this case study:
+
+Launch an EC2 instance:
+
+First, launch an EC2 instance in the AWS console. For this case study, we will use the Amazon Linux 2 AMI. Select the instance type that suits your needs, and choose the default storage options. Set up the security group to allow SSH traffic on port 22.
+
+2. Connect to the instance:
+
+After launching the instance, connect to it using an SSH client such as PuTTY or the SSH client that comes with Linux or macOS. Use the public IP address of the instance to connect to it.
+
+3. Install X11 server:
+
+Next, install the X11 server on the EC2 instance. This allows the Linux GUI to be displayed on your local computer. Use the following command to install X11 server:
+
+sudo yum install xorg-x11-server-Xorg
+4. Install a desktop environment:
+
+Once the X11 server is installed, you can install a desktop environment to launch the GUI. In this case, we will use the GNOME desktop environment. Use the following command to install GNOME:
+
+sudo yum groups install "GNOME Desktop"
+5. Install a remote desktop protocol (RDP) server:
+
+To access the desktop environment from your local computer, you will need to install an RDP server. For this case study, we will use xrdp. Use the following command to install xrdp:
+
+sudo yum install xrdp
+6. Configure the RDP server:
+
+After installing xrdp, configure it to start automatically at boot time by running the following command:
+
+sudo systemctl enable xrdp
+Then, start the xrdp service by running the following command:
+
+sudo systemctl start xrdp
+7. Connect to the desktop environment:
+
+
+Finally, use an RDP client on your local computer to connect to the Linux desktop environment on the EC2 instance. You can use the built-in Remote Desktop Connection app on Windows, or you can download an RDP client for macOS or Linux.
+
+In the RDP client, enter the public IP address of the EC2 instance and your login credentials. You should then be able to access the Linux desktop environment and launch applications from the GUI.
+
+In conclusion, launching a Linux operating system from an EC2 instance as a GUI involves installing an X11 server, a desktop environment, and an RDP server, and configuring the RDP server to start automatically. Once this is done, you can connect to the desktop environment using an RDP client on your local computer.
